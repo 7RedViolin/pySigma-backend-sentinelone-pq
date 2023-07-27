@@ -1,7 +1,7 @@
 # pySigma-backend-sentinelone-pq
 ![Tests](https://github.com/7RedViolin/pysigma-backend-sentinelone-pq/actions/workflows/test.yml/badge.svg)
 ![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/7RedViolin/52570ccc8af436c7ab34b942d1839ce0/raw/7RedViolin-pySigma-backend-sentinelone-pq.json)
-![Status](https://img.shields.io/badge/Status-pre--release-orange)
+![Status](https://img.shields.io/badge/Status-stable-green)
 
 # pySigma SentinelOne PQ Backend
 
