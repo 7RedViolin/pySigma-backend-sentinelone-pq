@@ -1,17 +1,17 @@
 # pySigma-backend-sentinelone
 ![Tests](https://github.com/7RedViolin/pysigma-backend-sentinelone/actions/workflows/test.yml/badge.svg)
-![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/7RedViolin/430d03b407f337c2b20029c356355f8a/raw/7RedViolin-pySigma-backend-carbonblack.json)
+![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/7RedViolin/430d03b407f337c2b20029c356355f8a/raw/7RedViolin-pySigma-backend-sentinelone-pq.json)
 ![Status](https://img.shields.io/badge/Status-pre--release-orange)
 
-# pySigma SentinelOne Backend
+# pySigma SentinelOne PQ Backend
 
-This is the SentinelOne backend for pySigma. It provides the package `sigma.backends.sentinelone` with the `SentinelOneBackend` class.
-Further, it contains the processing pipelines in `sigma.pipelines.sentinelone` for field renames and error handling. This pipeline is automatically applied to `SigmaRule` and `SigmaCollection` objects passed to the `SentinelOneBackend` class.
+This is the SentinelOne PowerQuery (PQ) backend for pySigma. It provides the package `sigma.backends.sentinelone` with the `SentinelOnePQBackend` class.
+Further, it contains the processing pipelines in `sigma.pipelines.sentinelone` for field renames and error handling. This pipeline is automatically applied to `SigmaRule` and `SigmaCollection` objects passed to the `SentinelOnePQBackend` class.
 
 It supports the following output formats:
 
-* default: plain SentinelOne Deep Visibility queries
-* json: JSON formatted SentinelOne Deep Visibility queries that includes the query, rule name, rule ID, and rule description
+* default: plaintext queries
+* json: JSON formatted queries that includes the query, rule name, rule ID, and rule description
 
 This backend is currently maintained by:
 
@@ -22,26 +22,26 @@ This can be install via pip from PyPI or using pySigma's plugin functionality
 
 ### PyPI
 ```bash
-pip install pysigma-backend-sentinelone
+pip install pysigma-backend-sentinelone-pq
 ```
 
 ### pySigma
 ```python
 from sigma.plugins import SigmaPluginDirectory
 plugins = SigmaPluginDirectory.default_plugin_directory()
-plugins.get_plugin_by_id("sentinelone").install()
+plugins.get_plugin_by_id("sentinelone_pq").install()
 ```
 
 ## Usage
 
 ### sigma-cli
 ```bash
-sigma convert -t sentinelone proc_creation_win_office_onenote_susp_child_processes.yml
+sigma convert -t sentinelone_pq proc_creation_win_office_onenote_susp_child_processes.yml
 ```
 
 ### pySigma
 ```python
-from sigma.backends.sentinelone import SentinelOneBackend
+from sigma.backends.sentinelone_pq import SentinelOnePQBackend
 from sigma.rule import SigmaRule
 
 rule = SigmaRule.from_yaml("""
@@ -56,13 +56,13 @@ detection:
     condition: sel""")
 
 
-backend = SentinelOneBackend()
+backend = SentinelOnePQBackend()
 print(backend.convert_rule(rule)[0])
 ```
 
 ## Side Notes & Limitations
-- Backend uses Deep Visibility syntax
-- Pipeline uses Deep Visibility field names
+- Backend uses PowerQuery syntax
+- Pipeline uses PowerQuery field names
 - Pipeline supports `linux`, `windows`, and `macos` product types
 - Pipeline supports the following category types for field mappings
   - `process_creation`

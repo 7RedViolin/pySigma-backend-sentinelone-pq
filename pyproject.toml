@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "pySigma-backend-sentinelone"
-version = "0.1.2"
-description = "pySigma SentinelOne backend"
+version = "0.1.0"
+description = "pySigma SentinelOne PQ backend"
 authors = ["Cori Smith <cs2718281@gmail.com>"]
 license = "MIT"
-repository = "https://github.com/7RedViolin/pySigma-backend-sentinelone"
+repository = "https://github.com/7RedViolin/pySigma-backend-sentinelone-pq"
 packages = [
     { include = "sigma" }
 ]
