@@ -1,6 +1,6 @@
 import pytest
 from sigma.collection import SigmaCollection
-from sigma.backends.sentinelone import SentinelOnePQBackend
+from sigma.backends.sentinelone_pq import SentinelOnePQBackend
 
 @pytest.fixture
 def sentinelone_pq_backend():
