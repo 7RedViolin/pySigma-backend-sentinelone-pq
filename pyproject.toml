@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pySigma-backend-sentinelone"
+name = "pySigma-backend-sentinelone-pq"
 version = "0.1.0"
 description = "pySigma SentinelOne PQ backend"
 authors = ["Cori Smith <cs2718281@gmail.com>"]
