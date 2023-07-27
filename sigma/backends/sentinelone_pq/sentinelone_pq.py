@@ -4,7 +4,7 @@ from sigma.processing.pipeline import ProcessingPipeline
 from sigma.conversion.base import TextQueryBackend
 from sigma.conditions import ConditionItem, ConditionAND, ConditionOR, ConditionNOT, ConditionFieldEqualsValueExpression
 from sigma.types import SigmaCompareExpression, SigmaRegularExpression, SigmaString
-from sigma.pipelines.sentinelone import sentinelonepq_pipeline
+from sigma.pipelines.sentinelone_pq import sentinelonepq_pipeline
 from sigma.conversion.deferred import DeferredQueryExpression
 import re
 from typing import ClassVar, Dict, Tuple, Pattern, List, Any, Union
