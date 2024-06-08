@@ -162,6 +162,22 @@ def test_sentinelone_pq_registry_mapping(sentinelone_pq_backend : SentinelOnePQB
         """)
     ) == ['event.category="Registry" and (src.process.image.path="valueA" and src.process.cmdline="invoke-mimikatz" and src.process.parent.image.path="valueB" and src.process.parent.cmdline="Get-Path" and registry.keyPath="foo bar" and registry.value="bar foo")']
 
+# https://github.com/SigmaHQ/sigma/blob/0ccbda753afc3130a414d5131da378e16b5c03eb/rules/windows/process_creation/proc_creation_win_systemsettingsadminflows_turn_on_dev_features.yml
+def test_sentinelone_pq_originalfilename(sentinelone_pq_backend : SentinelOnePQBackend):
+    assert sentinelone_pq_backend.convert(
+        SigmaCollection.from_yaml("""
+            title: Test
+            status: test
+            logsource:
+                category: process_creation
+                product: test_product
+            detection:
+                sel:
+                    OriginalFilename: 'SystemSettingsAdminFlows.exe'
+                condition: sel
+        """)
+    ) == ['event.type="Process Creation" and tgt.file.originalFileName="SystemSettingsAdminFlows.exe"']
+
 def test_sentinelone_pq_dns_mapping(sentinelone_pq_backend : SentinelOnePQBackend):
     assert sentinelone_pq_backend.convert(
         SigmaCollection.from_yaml("""

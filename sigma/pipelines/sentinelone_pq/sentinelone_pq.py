@@ -42,6 +42,7 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
             "ParentProcessId":"src.process.pid",
             "ParentImage":"src.process.image.path",
             "ParentCommandLine":"src.process.cmdline",
+            "OriginalFilename":"tgt.file.originalFileName",
         },
         'file':{
             "Image": "src.process.image.path",
