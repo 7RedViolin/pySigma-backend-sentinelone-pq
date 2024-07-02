@@ -23,8 +23,8 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
         'event.type'
     ]
 
-    translation_dict = {
-        'process_creation':{
+    translation_dict = { 
+        'process_creation':{                
             "ProcessId":"tgt.process.pid",
             "Image":"tgt.process.image.path",
             "Description":"tgt.process.displayName", #Not sure whether this should be Description or Product???
@@ -42,6 +42,9 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
             "ParentProcessId":"src.process.pid",
             "ParentImage":"src.process.image.path",
             "ParentCommandLine":"src.process.cmdline",
+            "ParentProcessGuid":"src.process.parent.uid",
+            "ProcessGuid":"tgt.process.uid",
+            "LogonGuid":"tgt.process.eUserUid"
         },
         'file':{
             "Image": "src.process.image.path",
@@ -50,7 +53,9 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
             "ParentCommandLine":"src.process.parent.cmdline",
             "TargetFilename":"tgt.file.path", 
             "SourceFilename":"tgt.file.oldPath",
-            "User":"src.process.user"
+            "User":"src.process.user",
+            "ProcessGuid":"src.process.uid",
+            "ProcessId":"src.process.pid"
         },
         'image_load':{
             "ImageLoaded":"module.path",
@@ -58,8 +63,13 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
             "CommandLine":"src.process.cmdline",
             "ParentImage":"src.process.parent.image.path",
             "ParentCommandLine":"src.process.parent.cmdline",
-            "sha1":"module.sha1",
-            "md5": "module.md5"
+            "Hashes":"module.sha1",
+            "md5": "module.md5",
+            "User": "src.process.user",
+            "ProcessGuid":"src.process.uid",
+            "ProcessId":"src.process.pid",
+            "Product": "src.process.displayName",
+            "Signed":"tgt.file.isSigned"
         },
         'pipe_creation':{
             "PipeName":"namedPipe.name",
@@ -67,6 +77,9 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
             "CommandLine":"src.process.cmdline",
             "ParentImage":"src.process.parent.image.path",
             "ParentCommandLine":"src.process.parent.cmdline",
+            "ProcessId":"src.process.pid",
+            "ProcessGuid":"src.process.uid",
+            "User":"src.process.user"
         },
         'registry':{
             "Image": "src.process.image.path",
@@ -74,7 +87,10 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
             "ParentImage":"src.process.parent.image.path",
             "ParentCommandLine":"src.process.parent.cmdline",
             "TargetObject": "registry.keyPath",
-            "Details": "registry.value"
+            "Details": "registry.value",
+            "ProcessId":"src.process.pid",
+            "ProcessGuid":"src.process.uid",
+            "NewName":"registry.value"
         },
         'dns':{
             "Image": "src.process.image.path",
