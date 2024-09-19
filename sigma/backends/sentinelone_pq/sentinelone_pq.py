@@ -80,10 +80,10 @@ class SentinelOnePQBackend(TextQueryBackend):
 
     field_null_expression : ClassVar[str] = 'not ({field} matches "\\.*")'
 
-    field_exists_expression : ClassVar[str] = '{field} matches "\\.*"'             # Expression for field existence as format string with {field} placeholder for field name
+    field_exists_expression : ClassVar[str] = '{field} matches "\\.*"'                # Expression for field existence as format string with {field} placeholder for field name
     field_not_exists_expression : ClassVar[str] = 'not ({field} matches "\\.*")'      # Expression for field non-existence as format string with {field} placeholder for field name. If not set, field_exists_expression is negated with boolean NOT.
 
-    convert_or_as_in : ClassVar[bool] = True                     # Convert OR as in-expression
+    convert_or_as_in : ClassVar[bool] = True                      # Convert OR as in-expression
     convert_and_as_in : ClassVar[bool] = False                    # Convert AND as in-expression
     in_expressions_allow_wildcards : ClassVar[bool] = False       # Values in list can contain wildcards. If set to False (default) only plain values are converted into in-expressions.
     field_in_list_expression : ClassVar[str] = "{field} {op} ({list})"  # Expression for field in list of values as format string with placeholders {field}, {op} and {list}
