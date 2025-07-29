@@ -193,7 +193,7 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
         ProcessingItem(
             identifier="s1_pq_image_load_eventtype",
             transformation=AddConditionTransformation({
-                "event.type": "ModuleLoad"
+                "event.type": "Module Load"
             }),
             rule_conditions=[
                 LogsourceCondition(category="image_load")
@@ -213,7 +213,7 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
         ProcessingItem(
             identifier="s1_pq_registry_eventtype",
             transformation=AddConditionTransformation({
-                "event.category": "Registry"
+                "event.category": "registry"
             }),
             rule_condition_linking=any,
             rule_conditions=[
@@ -227,7 +227,7 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
         ProcessingItem(
             identifier="s1_pq_dns_objecttype",
             transformation=AddConditionTransformation({
-                "event.category":"DNS"
+                "event.category":"dns"
             }),
             rule_condition_linking=any,
             rule_conditions=[
@@ -239,7 +239,7 @@ def sentinelonepq_pipeline() -> ProcessingPipeline:
         ProcessingItem(
             identifier="s1_pq_network_objecttype",
             transformation=AddConditionTransformation({
-                "event.category": ["DNS","Url","IP"]
+                "event.category": ["dns","url","ip"]
             }),
             rule_conditions=[
                 LogsourceCondition(category="network_connection")

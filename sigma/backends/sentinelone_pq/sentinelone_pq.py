@@ -44,7 +44,7 @@ class SentinelOnePQBackend(TextQueryBackend):
     escape_char     : ClassVar[str] = "\\"
     wildcard_multi  : ClassVar[str] = "*"
     wildcard_single : ClassVar[str] = "*"
-    add_escaped     : ClassVar[str] = ""
+    add_escaped     : ClassVar[str] = "\\"
     filter_chars    : ClassVar[str] = ""
     bool_values     : ClassVar[Dict[bool, str]] = {
         True: "true",
@@ -57,7 +57,7 @@ class SentinelOnePQBackend(TextQueryBackend):
 
     re_expression : ClassVar[str] = "{field} matches \"{regex}\""
     re_escape_char : ClassVar[str] = "\\"
-    re_escape : ClassVar[Tuple[str]] = ()
+    re_escape : ClassVar[Tuple[str]] = ("\\(", "\\)", "\\[", "\\]", "\\{", "\\}", "\\.", "\\*", "\\+", "\\?", "\\|", "\\^", "\\$",)  # Characters to escape in regex
     re_escape_escape_char : bool = True
     re_flag_prefix : bool = False
 
