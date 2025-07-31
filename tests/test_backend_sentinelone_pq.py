@@ -125,7 +125,7 @@ def test_sentinelone_pq_cidr_query(sentinelone_pq_backend : SentinelOnePQBackend
                     DestinationIp|cidr: 192.168.0.0/16
                 condition: sel
         """)
-    ) == ['(event.category in ("DNS","Url","IP")) and dst.ip.address contains "192.168."']
+    ) == ['(event.category in ("dns","url","ip")) and dst.ip.address contains "192.168."']
 
 def test_sentinelone_pq_default_output(sentinelone_pq_backend : SentinelOnePQBackend):
     """Test for output format default."""

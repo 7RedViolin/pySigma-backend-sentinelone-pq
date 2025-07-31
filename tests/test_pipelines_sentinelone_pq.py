@@ -121,7 +121,7 @@ def test_sentinelone_pq_image_load_mapping(sentinelone_pq_backend : SentinelOneP
                     ImageLoaded: foo bar
                 condition: sel
         """)
-    ) == ['event.type="ModuleLoad" and (src.process.image.path="valueA" and src.process.cmdline="invoke-mimikatz" and src.process.parent.image.path="valueB" and src.process.parent.cmdline="Get-Path" and module.sha1="asdfasdf" and module.md5="asdfasdfasdf" and module.path="foo bar")']
+    ) == ['event.type="Module Load" and (src.process.image.path="valueA" and src.process.cmdline="invoke-mimikatz" and src.process.parent.image.path="valueB" and src.process.parent.cmdline="Get-Path" and module.sha1="asdfasdf" and module.md5="asdfasdfasdf" and module.path="foo bar")']
 
 def test_sentinelone_pq_pipe_creation_mapping(sentinelone_pq_backend : SentinelOnePQBackend):
     assert sentinelone_pq_backend.convert(
@@ -160,7 +160,7 @@ def test_sentinelone_pq_registry_mapping(sentinelone_pq_backend : SentinelOnePQB
                     Details: bar foo
                 condition: sel
         """)
-    ) == ['event.category="Registry" and (src.process.image.path="valueA" and src.process.cmdline="invoke-mimikatz" and src.process.parent.image.path="valueB" and src.process.parent.cmdline="Get-Path" and registry.keyPath="foo bar" and registry.value="bar foo")']
+    ) == ['event.category="registry" and (src.process.image.path="valueA" and src.process.cmdline="invoke-mimikatz" and src.process.parent.image.path="valueB" and src.process.parent.cmdline="Get-Path" and registry.keyPath="foo bar" and registry.value="bar foo")']
 
 def test_sentinelone_pq_dns_mapping(sentinelone_pq_backend : SentinelOnePQBackend):
     assert sentinelone_pq_backend.convert(
@@ -182,7 +182,7 @@ def test_sentinelone_pq_dns_mapping(sentinelone_pq_backend : SentinelOnePQBacken
                     record_type: bar bar
                 condition: sel
         """)
-    ) == ['event.category="DNS" and (src.process.image.path="valueA" and src.process.cmdline="invoke-mimikatz" and src.process.parent.image.path="valueB" and src.process.parent.cmdline="Get-Path" and event.dns.request="foo bar" and event.dns.response="bar foo" and event.dns.request="foo foo" and event.dns.response="bar bar")']
+    ) == ['event.category="dns" and (src.process.image.path="valueA" and src.process.cmdline="invoke-mimikatz" and src.process.parent.image.path="valueB" and src.process.parent.cmdline="Get-Path" and event.dns.request="foo bar" and event.dns.response="bar foo" and event.dns.request="foo foo" and event.dns.response="bar bar")']
 
 def test_sentinelone_pq_network_mapping(sentinelone_pq_backend : SentinelOnePQBackend):
     assert sentinelone_pq_backend.convert(
@@ -211,7 +211,7 @@ def test_sentinelone_pq_network_mapping(sentinelone_pq_backend : SentinelOnePQBa
                     src_port: 8080
                 condition: sel
         """)
-    ) == ['(event.category in ("DNS","Url","IP")) and (src.process.image.path="valueA" and src.process.cmdline="invoke-mimikatz" and src.process.parent.image.path="valueB" and src.process.parent.cmdline="Get-Path" and (url.address="foo bar" or event.dns.request="foo bar") and dst.port.number=445 and dst.ip.address="0.0.0.0" and src.process.user="administrator" and src.ip.address="1.1.1.1" and src.port.number=135 and NetProtocolName="udp" and dst.ip.address="2.2.2.2" and src.ip.address="3.3.3.3" and dst.port.number=80 and src.port.number=8080)']
+    ) == ['(event.category in ("dns","url","ip")) and (src.process.image.path="valueA" and src.process.cmdline="invoke-mimikatz" and src.process.parent.image.path="valueB" and src.process.parent.cmdline="Get-Path" and (url.address="foo bar" or event.dns.request="foo bar") and dst.port.number=445 and dst.ip.address="0.0.0.0" and src.process.user="administrator" and src.ip.address="1.1.1.1" and src.port.number=135 and NetProtocolName="udp" and dst.ip.address="2.2.2.2" and src.ip.address="3.3.3.3" and dst.port.number=80 and src.port.number=8080)']
 
 def test_sentinelone_pq_unsupported_rule_type(sentinelone_pq_backend : SentinelOnePQBackend):
   with pytest.raises(ValueError):
