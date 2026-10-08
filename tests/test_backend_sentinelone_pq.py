@@ -127,6 +127,21 @@ def test_sentinelone_pq_cidr_query(sentinelone_pq_backend : SentinelOnePQBackend
         """)
     ) == ['(event.category in ("dns","url","ip")) and dst.ip.address contains "192.168."']
 
+def test_sentinelone_pq_escape_char_query(sentinelone_pq_backend: SentinelOnePQBackend):
+    assert sentinelone_pq_backend.convert(
+        SigmaCollection.from_yaml("""
+            title: Test
+            status: Test
+            logsource:
+                category: process_creation
+                product: test_product
+            detection:
+                sel:
+                    Image|startswith: C:\\Windows\\System32\\
+                condition: sel
+        """)
+    ) == ['event.type="Process Creation" and tgt.process.image.path contains "C:\\\\Windows\\\\System32\\\\"']
+
 def test_sentinelone_pq_default_output(sentinelone_pq_backend : SentinelOnePQBackend):
     """Test for output format default."""
     assert sentinelone_pq_backend.convert(
