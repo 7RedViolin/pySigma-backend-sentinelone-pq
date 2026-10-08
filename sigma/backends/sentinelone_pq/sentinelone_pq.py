@@ -78,10 +78,10 @@ class SentinelOnePQBackend(TextQueryBackend):
         SigmaCompareExpression.CompareOperators.GTE : ">=",
     }
 
-    field_null_expression : ClassVar[str] = 'not ({field} matches "\\.*")'
+    field_null_expression : ClassVar[str] = 'not ({field}=*)'
 
-    field_exists_expression : ClassVar[str] = '{field} matches "\\.*"'                # Expression for field existence as format string with {field} placeholder for field name
-    field_not_exists_expression : ClassVar[str] = 'not ({field} matches "\\.*")'      # Expression for field non-existence as format string with {field} placeholder for field name. If not set, field_exists_expression is negated with boolean NOT.
+    field_exists_expression : ClassVar[str] = '{field} = *'                # Expression for field existence as format string with {field} placeholder for field name
+    field_not_exists_expression : ClassVar[str] = 'not ({field} = *)'      # Expression for field non-existence as format string with {field} placeholder for field name. If not set, field_exists_expression is negated with boolean NOT.
 
     convert_or_as_in : ClassVar[bool] = True                      # Convert OR as in-expression
     convert_and_as_in : ClassVar[bool] = False                    # Convert AND as in-expression
